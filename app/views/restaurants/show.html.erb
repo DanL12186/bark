@@ -13,6 +13,7 @@
   <%= @restaurant.user_id %>
 </p>
 
-<%= render 'reviews/form' %>
 <h2>Reviews</h2>
 <%= render @reviews if @reviews.any? %>
+
+<%= render 'reviews/form' %>

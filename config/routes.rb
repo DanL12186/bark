@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'pages#home'
+
   resources :restaurants do
     resources :reviews
   end
