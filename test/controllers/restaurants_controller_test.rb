@@ -19,7 +19,7 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create restaurant" do
-    assert_difference('Restaurant.count') do
+    assert_difference('Restaurant.count', 1) do
       post restaurants_url, params: { restaurant: { name: @restaurant.name, user_id: @restaurant.user_id } }
     end
 
