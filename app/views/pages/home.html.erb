@@ -1,0 +1,11 @@
+<div class='text-center'>
+  
+  Restaurants ranked:
+
+  <% @restaurants.each do |restaurant| %>
+    <div>
+      <%= restaurant.name %> - <%= five_star_rating(restaurant.reviews) %> Stars
+    </div>
+  <% end %>
+
+</div>
