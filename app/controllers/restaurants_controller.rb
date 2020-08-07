@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :prevent_unauthorized_action, only: [:edit, :update, :destroy]
 
   # GET /restaurants
   # GET /restaurants.json
@@ -11,7 +12,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
-    @reviews = @restaurant.reviews
+    @reviews = @restaurant.reviews.sort_by(&:created_at).reverse
     @new_review = Review.new if current_user
   end
 
@@ -74,5 +75,9 @@ class RestaurantsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def restaurant_params
       params.require(:restaurant).permit(:name)
+    end
+
+    def prevent_unauthorized_action
+      redirect_to root_path unless current_user == @restaurant.user
     end
 end
