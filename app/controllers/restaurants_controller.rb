@@ -30,6 +30,7 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user = current_user
+    @restaurant.photos.attach(params[:restaurant][:photo])
 
     respond_to do |format|
       if @restaurant.save
