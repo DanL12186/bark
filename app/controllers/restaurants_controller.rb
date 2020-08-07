@@ -45,6 +45,8 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
+    @restaurant.photos.attach(params[:restaurant][:photo])
+
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }

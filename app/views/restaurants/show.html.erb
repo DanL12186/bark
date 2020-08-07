@@ -13,6 +13,12 @@
   <%= @restaurant.user_id %>
 </p>
 
+<div>
+  <% @restaurant.photos.each do | photo | %>
+    <img src= <%= url_for(photo) %> class='restaurant-photo'>
+  <% end %>
+<div>
+
 <h2>Reviews</h2>
 <%= render @reviews if @reviews.any? %>
 

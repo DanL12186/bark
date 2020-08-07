@@ -1,3 +1,10 @@
 // Place all the styles related to the Restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.restaurant-photo {
+  width: 192px;
+  
+  &:hover {
+    transform: scale(1.15);
+  }
+}
