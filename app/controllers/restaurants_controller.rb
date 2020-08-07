@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.includes(:reviews).all
+    @restaurants = Restaurant.includes(:reviews, :user).all
   end
 
   # GET /restaurants/1
