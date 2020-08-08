@@ -4,6 +4,12 @@
     <h6 class="card-subtitle mb-2 text-muted">Rating: <%= review.rating %></h6>
     <p class="card-text"><%= review.comment %></p>
 
+    <div>
+      <% review.photos.each do | photo | %>
+        <%= image_tag url_for(photo), class: 'restaurant-photo' %>
+      <% end %>
+    <div>
+
     <% if review.user == current_user %>
       <%= link_to "Delete", restaurant_review_path(review.restaurant, review), method: :delete, class: "card-link" %>
     <% end %>
