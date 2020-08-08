@@ -1,10 +1,10 @@
 <div class='text-center'>
   
-  Restaurants ranked:
+  <h2> Restaurants ranked: </h2>
 
   <% @restaurants.each do |restaurant| %>
     <div>
-      <%= restaurant.name %> - <%= five_star_rating(restaurant.reviews) %> Stars
+      <%= link_to restaurant.name, restaurant_path(restaurant) %> (<%= five_star_rating(restaurant.reviews) %> Stars)
     </div>
   <% end %>
 
