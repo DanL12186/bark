@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+  include Pagy::Backend
+
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   before_action :prevent_unauthorized_action, only: [:edit, :update, :destroy]
@@ -6,7 +8,9 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.includes(:reviews, :user).all
+    @pagy, @restaurants = pagy(
+      Restaurant.includes(:reviews, :user).order(:name).all
+    )
   end
 
   # GET /restaurants/1
