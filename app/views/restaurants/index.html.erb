@@ -15,7 +15,7 @@
     <% @restaurants.each do |restaurant| %>
       <tr>
         <td><%= restaurant.name %></td>
-        <td><%= restaurant.user_id %></td>
+        <td><%= restaurant.user.email %></td>
         <td><%= five_star_rating(restaurant.reviews) %></td>
         <td><%= link_to 'Show', restaurant %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) if restaurant.user == current_user %></td>

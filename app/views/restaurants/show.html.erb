@@ -10,12 +10,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @restaurant.user_id %>
+  <%= @restaurant.user.email %>
 </p>
 
 <div>
   <% @restaurant.photos.each do | photo | %>
-    <img src= <%= url_for(photo) %> class='restaurant-photo'>
+    <%= image_tag url_for(photo), class: 'restaurant-photo' %>
   <% end %>
 <div>
 
