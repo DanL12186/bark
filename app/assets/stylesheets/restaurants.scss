@@ -3,8 +3,22 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .restaurant-photo {
   width: 192px;
-  
+
   &:hover {
     transform: scale(1.15);
   }
+}
+
+.restaurant-table {
+  margin: 2em 0 2em 0;
+  text-align: center;
+
+  &.restaurant-table-header {
+    width: 400px;
+  }
+}
+
+.pagy-nav {  
+  display: flex;
+  justify-content: center;
 }
