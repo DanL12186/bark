@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <h1>
+      Hi <%= @user.email %>, <%= @reviewer.email %> has left a review of your Restaurant, <%= @restaurant.name %>
+    </h1>
+
+    <h2> They said: </h2>
+
+    <p>
+      <%= @review.comment%>
+    </p>
+
+
+    <h2> They rated it: </h2>
+
+    <p> <%= @review.rating %> stars. </p>
+  </body>
+</html>
