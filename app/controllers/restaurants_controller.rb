@@ -12,7 +12,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
-    @reviews = @restaurant.reviews.sort_by(&:created_at).reverse
+    @reviews = @restaurant.reviews.includes(:user, photos_attachments: :blob).sort_by(&:created_at).reverse
     @new_review = Review.new if current_user
   end
 
