@@ -13,14 +13,11 @@
   )
 }
 
-unique_ids = User.pluck(:id)
+user_ids = User.pluck(:id)
 
-#have each user own two restaurants
-user_ids = unique_ids + unique_ids
-
-(0...10).each do | idx |
+(0...50).each do | idx |
   Restaurant.create(
    name: Faker::Restaurant.name,
-   user_id:  user_ids[idx]
+   user_id:  user_ids[idx%5]
   )
 end
