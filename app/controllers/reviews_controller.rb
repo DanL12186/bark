@@ -5,6 +5,7 @@ class ReviewsController < ApplicationController
     @restaurant = Restaurant.includes(:user).find(params[:restaurant_id])
     @review = @restaurant.reviews.new(params[:review].permit(:rating, :comment))
     @review.user = current_user
+    @review.photos.attach(params[:review][:photo])
     @review.save
 
     if @review.valid?
