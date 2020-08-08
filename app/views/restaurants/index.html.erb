@@ -14,10 +14,9 @@
   <tbody>
     <% @restaurants.each do |restaurant| %>
       <tr>
-        <td><%= restaurant.name %></td>
+        <td><%= link_to restaurant.name, restaurant %></td>
         <td><%= restaurant.user.email %></td>
         <td><%= five_star_rating(restaurant.reviews) %></td>
-        <td><%= link_to 'Show', restaurant %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) if restaurant.user == current_user %></td>
         <td><%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } if restaurant.user == current_user %></td>
       </tr>
