@@ -1,22 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Restaurants</h1>
+<div > 
+  <%= button_to 'Add Your Restaurant', new_restaurant_path, method: :get %>
+</div>
 
-<table>
+<h1 class='text-center'>Restaurants</h1>
+
+<table class='container restaurant-table'>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>User</th>
-      <th>Rating</th>
+      <th class='restaurant-table-header'>Name</th>
+      <th class='restaurant-table-header'>User</th>
+      <th class='restaurant-table-header'>Rating</th>
+      <th class='restaurant-table-header'>Total Reviews</th>
     </tr>
   </thead>
 
   <tbody>
     <% @restaurants.each do |restaurant| %>
-      <tr>
+      <tr class='restaurant-idx-trow text-center'>
         <td><%= link_to restaurant.name, restaurant %></td>
         <td><%= restaurant.user.email %></td>
         <td><%= five_star_rating(restaurant.reviews) %></td>
+        <td><%= restaurant.reviews.size %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) if restaurant.user == current_user %></td>
         <td><%= link_to 'Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } if restaurant.user == current_user %></td>
       </tr>
@@ -24,6 +30,6 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Restaurant', new_restaurant_path %>
+<div class='pagy-nav container'> 
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.count > 20 %> 
+</div>

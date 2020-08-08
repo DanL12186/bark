@@ -1,4 +1,5 @@
 module RestaurantsHelper
+  include Pagy::Frontend
 
   def five_star_rating(reviews)
     return 0 if reviews.size.zero?
