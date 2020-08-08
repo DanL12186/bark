@@ -1,8 +1,11 @@
 require "application_system_test_case"
 
 class RestaurantsTest < ApplicationSystemTestCase
+  include Warden::Test::Helpers
+
   setup do
     @restaurant = restaurants(:one)
+    login_as users(:one)
   end
 
   test "visiting the index" do
@@ -15,7 +18,6 @@ class RestaurantsTest < ApplicationSystemTestCase
     click_on "New Restaurant"
 
     fill_in "Name", with: @restaurant.name
-    fill_in "User", with: @restaurant.user_id
     click_on "Create Restaurant"
 
     assert_text "Restaurant was successfully created"
@@ -27,7 +29,6 @@ class RestaurantsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Name", with: @restaurant.name
-    fill_in "User", with: @restaurant.user_id
     click_on "Update Restaurant"
 
     assert_text "Restaurant was successfully updated"
@@ -37,7 +38,7 @@ class RestaurantsTest < ApplicationSystemTestCase
   test "destroying a Restaurant" do
     visit restaurants_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on "Delete", match: :first
     end
 
     assert_text "Restaurant was successfully destroyed"
