@@ -22,4 +22,8 @@
 <h2>Reviews</h2>
 <%= render @reviews if @reviews.any? %>
 
-<%= render 'reviews/form' %>
+<% if user_signed_in? %>
+  <%= render 'reviews/form' %>
+<% else %>
+  <div> <%= link_to "Log in to submit a review!", new_user_session_path %> </div>
+<% end %>
