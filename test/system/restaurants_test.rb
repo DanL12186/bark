@@ -15,7 +15,7 @@ class RestaurantsTest < ApplicationSystemTestCase
 
   test "creating a Restaurant" do
     visit restaurants_url
-    click_on "New Restaurant"
+    click_on "Add Your Restaurant"
 
     fill_in "Name", with: @restaurant.name
     click_on "Create Restaurant"
