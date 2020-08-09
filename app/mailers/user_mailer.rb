@@ -6,6 +6,7 @@ class UserMailer < ApplicationMailer
     @reviewer = params[:reviewer]
     @restaurant = params[:restaurant]
     @review = params[:review]
+    @photo_count = params[:photo_count]
 
     mail(to: @user.email, subject: "New review for #{@restaurant.name} by #{@reviewer.email}")
   end

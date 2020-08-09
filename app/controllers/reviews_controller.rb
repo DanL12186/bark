@@ -9,7 +9,13 @@ class ReviewsController < ApplicationController
     @review.save
 
     if @review.valid?
-      review_details = { user: @restaurant.user, reviewer: current_user, restaurant: @restaurant, review: @review }
+      review_details = { 
+        user: @restaurant.user, 
+        reviewer: current_user, 
+        restaurant: @restaurant, 
+        review: @review, 
+        photo_count: @review.photos.size 
+      }
       
       #I didn't explicitly integrate this into ActiveJob because it does this automatically and is async with .deliver_later
       UserMailer.with(review_details).review_notification_email.deliver_later

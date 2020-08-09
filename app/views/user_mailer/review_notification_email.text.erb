@@ -5,3 +5,7 @@ They said:
 <%= @review.comment%>
 
 They rated it: <%= @review.rating %> stars.
+
+<% unless @photo_count.zero? %>
+  <p> They also attached <%= @photo_count %> picture(s) </p>
+<% end %>
