@@ -1,14 +1,16 @@
-<div class="row">
+<div class="review row">
   <div class="card col-md-12">
     <h5 class="card-title">
-      <%= review.user.email %>
+      By: <%= review.user.email %>
     </h5>
 
     <h6 class="card-subtitle mb-2 text-muted">
       Rating: <%= review.rating %>
     </h6>
     
-    <p class="card-text"><%= review.comment %></p>
+    <p class="card-text">
+      Review: <%= review.comment %>
+    </p>
 
     <div>
       <% review.photos.each do | photo | %>

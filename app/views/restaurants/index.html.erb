@@ -1,10 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<div > 
-  <%= button_to 'Add Your Restaurant', new_restaurant_path, method: :get %>
-</div>
-
-<h1 class='text-center'>Restaurants</h1>
+<h1 class='page-header text-center'>Restaurants</h1>
+<%= button_to 'Add Your Restaurant', new_restaurant_path, method: :get, class: 'btn btn-primary add-restaurant' %>
 
 <table class='container restaurant-table'>
   <thead>

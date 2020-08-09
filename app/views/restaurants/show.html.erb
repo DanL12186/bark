@@ -19,8 +19,11 @@
   <% end %>
 <div>
 
-<h2>Reviews</h2>
-<%= render @reviews if @reviews.any? %>
+
+<div class='reviews'>
+  <h2>Reviews</h2>
+  <%= render @reviews if @reviews.any? %>
+</div>
 
 <% if user_signed_in? %>
   <%= render 'reviews/form' %>
