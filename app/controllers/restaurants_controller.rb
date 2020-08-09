@@ -5,32 +5,21 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   before_action :prevent_unauthorized_action, only: [:edit, :update, :destroy]
 
-  # GET /restaurants
-  # GET /restaurants.json
   def index
     @pagy, @restaurants = pagy(
-      Restaurant.includes(:reviews, :user).order(:name).all
+      Restaurant.includes(:reviews, :user).order(:name)
     )
   end
 
-  # GET /restaurants/1
-  # GET /restaurants/1.json
   def show
-    @reviews = @restaurant.reviews.includes(:user, photos_attachments: :blob).sort_by(&:created_at).reverse
+    @reviews = @restaurant.reviews.includes(:user, photos_attachments: :blob).order(created_at: :desc)
     @new_review = Review.new if current_user
   end
 
-  # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
   end
 
-  # GET /restaurants/1/edit
-  def edit
-  end
-
-  # POST /restaurants
-  # POST /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user = current_user
@@ -47,8 +36,6 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /restaurants/1
-  # PATCH/PUT /restaurants/1.json
   def update
     @restaurant.photos.attach(params[:restaurant][:photo])
 
@@ -63,8 +50,6 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  # DELETE /restaurants/1
-  # DELETE /restaurants/1.json
   def destroy
     @restaurant.destroy
     respond_to do |format|
@@ -74,12 +59,10 @@ class RestaurantsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
       @restaurant = Restaurant.includes(:reviews).find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def restaurant_params
       params.require(:restaurant).permit(:name)
     end
