@@ -26,7 +26,7 @@
 </div>
 
 <% if user_signed_in? %>
-  <%= render 'reviews/form' %>
+  <%= render 'reviews/form' unless current_user == @restaurant.user %>
 <% else %>
   <div> <%= link_to "Log in to submit a review!", new_user_session_path %> </div>
 <% end %>
