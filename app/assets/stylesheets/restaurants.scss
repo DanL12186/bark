@@ -10,7 +10,7 @@
 }
 
 .restaurant-table {
-  margin: 6em 0 3.5em 0;
+  margin: 6em 0 0 0;
   text-align: center;
 
   &.restaurant-table-header {
@@ -19,6 +19,7 @@
 }
 
 .pagy-nav {  
+  margin-top: 3.5em;
   display: flex;
   justify-content: center;
 }
@@ -28,6 +29,6 @@
 }
 
 .page-header {
-  margin-top: 1.25em;
+  margin-top: 1.5em;
   margin-bottom: 0.5em;
 }
