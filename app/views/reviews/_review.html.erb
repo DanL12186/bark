@@ -19,7 +19,14 @@
     <div>
 
     <% if review.user == current_user %>
-      <%= link_to "Delete", restaurant_review_path(review.restaurant, review), method: :delete, class: "card-link" %>
+      <%= link_to "Delete", 
+                  restaurant_review_path(review.restaurant, review), 
+                  method: :delete, class: "card-link", 
+                  data: { 
+                    reflex: "click->ReviewReflex#delete_review",
+                    id: review.id
+                  }
+      %>
     <% end %>
   </div>
 </div>

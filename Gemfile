@@ -25,7 +25,7 @@ gem 'pagy', '~> 3.8'
 gem 'faker', '~> 2.13.0'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -59,3 +59,5 @@ end
 gem "devise", "~> 4.7"
 
 gem "foreman", "~> 0.87.1"
+
+gem "stimulus_reflex", "~> 3.2"

@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
   include Pagy::Backend
 
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:show, :edit, :update]
   before_action :prevent_unauthorized_action, only: [:edit, :update, :destroy]
 
   def index
@@ -12,7 +12,11 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @reviews = @restaurant.reviews.includes(:user, photos_attachments: :blob).order(created_at: :desc)
+    @reviews = @restaurant.reviews
+                          .includes(:user, photos_attachments: :blob)
+                          .with_rich_text_comment_and_embeds
+                          .order(created_at: :desc)
+                          
     @new_review = Review.new if current_user
   end
 
@@ -50,17 +54,9 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def destroy
-    @restaurant.destroy
-    respond_to do |format|
-      format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     def set_restaurant
-      @restaurant = Restaurant.includes(:reviews).find(params[:id])
+      @restaurant = Restaurant.includes(:reviews, :user).find(params[:id])
     end
 
     def restaurant_params
