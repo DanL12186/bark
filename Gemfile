@@ -61,3 +61,5 @@ gem "devise", "~> 4.7"
 gem "foreman", "~> 0.87.1"
 
 gem "stimulus_reflex", "~> 3.2"
+
+gem "cable_ready", "~> 4.3"
