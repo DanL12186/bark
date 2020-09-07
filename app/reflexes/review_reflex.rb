@@ -25,4 +25,29 @@ class ReviewReflex < ApplicationReflex
     Review.find(element.dataset[:id]).destroy
     # flash[:notice] = 'Restaurant was successfully destroyed.'
   end
+
+  def create_review
+    restaurant = Restaurant.includes(:user).find(params[:id])
+    user = User.find(element[:data_current_user])
+
+    if restaurant.user == user
+      return redirect_to root_path
+    else
+      review = restaurant.reviews.new(params[:review].permit(:rating, :comment))
+      review.user = user
+      review.photos.attach(params[:review][:photo])
+      
+      if review.save && Rails.env.production?
+        review_details = { 
+          user: restaurant.user, 
+          reviewer: user, 
+          restaurant: restaurant, 
+          review: review, 
+          photo_count: review.photos.size 
+        }
+        
+        UserMailer.with(review_details).review_notification_email.deliver_later
+      end
+    end 
+  end
 end

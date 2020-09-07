@@ -20,7 +20,13 @@
     </div>
 
     <div class="form-group">
-      <%= form.submit class: 'btn btn-primary' %>
+      <%= form.submit class: 'btn btn-primary', 
+                data: { 
+                  reflex: "click->ReviewReflex#create_review",
+                  restaurant_id: @restaurant.id,
+                  current_user: current_user.id
+                }
+      %>
     </div>
   <% end %>
 </div>
