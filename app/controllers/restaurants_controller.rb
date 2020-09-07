@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
   include Pagy::Backend
 
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_restaurant, only: [:show, :edit, :update]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   before_action :prevent_unauthorized_action, only: [:edit, :update, :destroy]
 
   def index
@@ -51,6 +51,14 @@ class RestaurantsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @restaurant.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @restaurant.destroy
+    respond_to do |format|
+      format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

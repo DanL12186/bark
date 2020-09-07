@@ -21,22 +21,11 @@ class ReviewsController < ApplicationController
         }
         
         #I didn't explicitly integrate this into ActiveJob because it does this automatically and is async with .deliver_later
-        UserMailer.with(review_details).review_notification_email.deliver_later unless 1 == 1
+        #UserMailer.with(review_details).review_notification_email.deliver_later
       end
     end
 
     redirect_to restaurant_path(@restaurant)    
   end
 
-  def destroy
-    @restaurant = Restaurant.includes(:reviews).find(params[:restaurant_id])
-    @review = @restaurant.reviews.find(params[:id])
-
-    unless @review.user == current_user
-      redirect_to root_path
-    else
-      @review.destroy
-      redirect_to restaurant_path(@restaurant)
-    end
-  end
 end
